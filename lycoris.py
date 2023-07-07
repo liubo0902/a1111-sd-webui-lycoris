@@ -780,6 +780,11 @@ def list_available_lycos(model_dir=shared.cmd_opts.lyco_dir):
         glob.glob(os.path.join(model_dir, '**/*.pt'), recursive=True) + \
         glob.glob(os.path.join(model_dir, '**/*.safetensors'), recursive=True) + \
         glob.glob(os.path.join(model_dir, '**/*.ckpt'), recursive=True)
+    for model_dir in glob.iglob(shared.cmd_opts.data_dir, '*'):
+    candidates = candidates + \
+        glob.glob(os.path.join(model_dir, '**/*.pt'), recursive=True) + \
+        glob.glob(os.path.join(model_dir, '**/*.safetensors'), recursive=True) + \
+        glob.glob(os.path.join(model_dir, '**/*.ckpt'), recursive=True)
 
     for filename in sorted(candidates, key=str.lower):
         if os.path.isdir(filename):
